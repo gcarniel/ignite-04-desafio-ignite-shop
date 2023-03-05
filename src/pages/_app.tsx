@@ -1,8 +1,9 @@
 import { globalStyles } from '@/styles/global'
-import { Container, Header } from '@/styles/pages/app'
+import { Cart, Container, Content, Header } from '@/styles/pages/app'
 import type { AppProps } from 'next/app'
 import Image from 'next/image'
 import Link from 'next/link'
+import { Handbag } from 'phosphor-react'
 
 globalStyles()
 
@@ -14,8 +15,14 @@ export default function App({ Component, pageProps }: AppProps) {
         <Link href={'/'}>
           <Image src={logo} alt="" />
         </Link>
+        <Cart>
+          <Handbag size={32} weight="bold" />
+        </Cart>
       </Header>
-      <Component {...pageProps} />
+
+      <Content>
+        <Component {...pageProps} />
+      </Content>
     </Container>
   )
 }

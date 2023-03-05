@@ -3,9 +3,14 @@ import { styled } from '..'
 export const Container = styled('div', {
   display: 'flex',
   flexDirection: 'column',
-  alignItems: 'flex-start',
-  justifyContent: 'center',
   minHeight: '100vh',
+})
+
+export const Content = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  flex: 1,
 })
 
 export const Header = styled('header', {
@@ -13,4 +18,16 @@ export const Header = styled('header', {
   width: '100%',
   maxWidth: 1180,
   margin: '0 auto',
+
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+})
+
+export const Cart = styled('button', {
+  background: '$gray800',
+  borderRadius: 6,
+  padding: '.75rem',
+  border: 0,
+  cursor: 'pointer',
 })

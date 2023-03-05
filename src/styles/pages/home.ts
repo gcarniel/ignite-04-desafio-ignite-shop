@@ -1,9 +1,28 @@
 import { styled } from '..'
 
+export const ProductWrapper = styled('div', {
+  display: 'flex',
+  background: 'rgba(0,0,0,.1)',
+  width: '100%',
+  alignItems: 'center',
+  position: 'relative',
+  padding: '2rem 0',
+  zIndex: 0,
+
+  '&:hover': {
+    '#caret-left': {
+      transform: 'translateX(0%) matrix(-1, 0, 0, 1, 0, 0)',
+    },
+
+    '#caret-right': {
+      transform: 'translateX(0%)',
+    },
+  },
+})
+
 export const HomeContainer = styled('main', {
   display: 'flex',
   width: '100%',
-  maxWidth: 'calc(100vw - ((100vw - 1180px) / 2))',
   marginLeft: 'auto',
   minHeight: 656,
 })
@@ -62,4 +81,35 @@ export const Product = styled('div', {
       opacity: 1,
     },
   },
+})
+
+export const Caret = styled('div', {
+  variants: {
+    pos: {
+      left: {
+        left: 0,
+        transition: '.2s',
+        background:
+          'linear-gradient(90deg, rgba(18, 18, 20, 0) 0%, rgba(18, 18, 20, 0.75) 100%)',
+        transform: 'translateX(-110%)',
+      },
+      right: {
+        right: 0,
+        transition: '.2s',
+        background:
+          'linear-gradient(90deg, rgba(18, 18, 20, 0) 0%, rgba(18, 18, 20, 0.75) 100%);',
+        transform: 'translateX(110%)',
+      },
+    },
+  },
+
+  cursor: 'pointer',
+
+  position: 'absolute',
+  height: '100vh',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  width: '136px',
+  zIndex: 1,
 })

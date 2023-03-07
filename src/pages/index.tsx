@@ -9,7 +9,7 @@ import { stripe } from '@/lib/stripe'
 import Stripe from 'stripe'
 import Link from 'next/link'
 import Head from 'next/head'
-import { CaretRight } from 'phosphor-react'
+import { CaretRight, Handbag } from 'phosphor-react'
 import { Caret } from '@/styles/pages/home'
 
 interface HomeProps {
@@ -65,8 +65,13 @@ export default function Home({ products }: HomeProps) {
                   />
 
                   <footer>
-                    <strong>{product.description}</strong>
-                    <span>{product.price}</span>
+                    <div>
+                      <strong>{product.description}</strong>
+                      <span>{product.price}</span>
+                    </div>
+                    <span>
+                      <Handbag size={24} />
+                    </span>
                   </footer>
                 </Product>
               </Link>

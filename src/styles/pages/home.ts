@@ -64,14 +64,30 @@ export const Product = styled('div', {
     opacity: 0,
     transition: 'all .2s ease-in-out',
 
-    strong: {
+    div: {
+      display: 'flex',
+      flexDirection: 'column',
+    },
+
+    'div > strong': {
       fontSize: '$lg',
     },
 
-    span: {
+    'div > span': {
       fontSize: '$xl',
       fontWeight: 'bold',
       color: '$green300',
+    },
+
+    '& > span': {
+      color: '$white',
+      backgroundColor: '$green300',
+      borderRadius: '8px',
+      padding: '.75rem',
+
+      display: 'flex',
+      alignContent: 'center',
+      justifyContent: 'center',
     },
   },
 

@@ -17,13 +17,14 @@ interface HomeProps {
   products: ProductType[]
 }
 
-interface ProductType {
+export interface ProductType {
   id: string
   name: string
   imageUrl: string
   price: string
   priceRaw: number
   description: string
+  defaultPriceId?: string
 }
 
 export default function Home({ products }: HomeProps) {
@@ -44,6 +45,7 @@ export default function Home({ products }: HomeProps) {
       price: Number(product.priceRaw),
       image: product.imageUrl,
       name: product.name,
+      defaultPriceId: product.defaultPriceId,
     }
 
     addItem(productStripe)
@@ -118,6 +120,7 @@ export const getStaticProps: GetStaticProps = async () => {
       name: product.name,
       imageUrl: product.images[0],
       priceRaw: price.unit_amount as number,
+      defaultPriceId: price.id,
       price: new Intl.NumberFormat('pt-BR', {
         style: 'currency',
         currency: 'BRL',

@@ -4,41 +4,31 @@ import {
   ProductContainer,
   ProductDetails,
 } from '@/styles/pages/products'
-import axios from 'axios'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
-import { useState } from 'react'
 import Stripe from 'stripe'
+import { useShoppingCart } from 'use-shopping-cart'
+import { ProductType } from '..'
 
 interface ProductProps {
-  product: {
-    id: string
-    name: string
-    imageUrl: string
-    price: string
-    description: string
-    defaultPriceId: string
-  }
+  product: ProductType
 }
 
 export default function Product({ product }: ProductProps) {
-  const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] =
-    useState(false)
+  const { addItem } = useShoppingCart()
+
   const handleBuyProduct = async () => {
-    try {
-      setIsCreatingCheckoutSession(true)
-      const response = await axios.post('/api/checkout', {
-        priceId: product.defaultPriceId,
-      })
-
-      const { checkoutUrl } = await response.data
-
-      window.location.href = checkoutUrl
-    } catch (error) {
-      alert('Erro ao redirecionar ao checkout!')
-      setIsCreatingCheckoutSession(false)
+    const productStripe = {
+      sku: `sku_${product.name}`,
+      currency: 'BRL',
+      price: Number(product.priceRaw),
+      image: product.imageUrl,
+      name: product.name,
+      defaultPriceId: product.defaultPriceId,
     }
+
+    addItem(productStripe)
   }
 
   return (
@@ -59,12 +49,7 @@ export default function Product({ product }: ProductProps) {
 
           <p>{product.description}</p>
 
-          <button
-            disabled={isCreatingCheckoutSession}
-            onClick={handleBuyProduct}
-          >
-            Colocar na sacola
-          </button>
+          <button onClick={handleBuyProduct}>Colocar na sacola</button>
         </ProductDetails>
       </ProductContainer>
     </>
@@ -97,6 +82,7 @@ export const getStaticProps: GetStaticProps<any, { id: string }> = async ({
         imageUrl: product.images[0],
         description: product.description,
         defaultPriceId: price.id,
+        priceRaw: price.unit_amount as number,
         price: new Intl.NumberFormat('pt-BR', {
           style: 'currency',
           currency: 'BRL',

@@ -10,10 +10,12 @@ export default async function handler(
     res.status(405).json({ error: 'method not allowed.' })
   }
 
-  const { priceId } = req.body
+  const { lineItems } = req.body
 
-  if (!priceId) {
-    res.status(400).json({ error: 'price not found.' })
+  console.log(lineItems)
+
+  if (!lineItems || lineItems.lenght === 0) {
+    res.status(400).json({ error: 'Not found line_items.' })
   }
 
   const successUrl = `${process.env.NEXT_URL}/success?session_id={CHECKOUT_SESSION_ID}`
@@ -23,12 +25,7 @@ export default async function handler(
     success_url: successUrl,
     cancel_url: cancelUrl,
     mode: 'payment',
-    line_items: [
-      {
-        price: priceId,
-        quantity: 1,
-      },
-    ],
+    line_items: lineItems,
   })
   res.status(201).json({
     checkoutUrl: checkoutSession.url,

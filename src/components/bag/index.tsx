@@ -1,13 +1,18 @@
 import { BagContainer, Close, Footer, Products } from '@/styles/components/bag'
+import axios from 'axios'
 import Image from 'next/image'
 import { X } from 'phosphor-react'
-import { MouseEvent } from 'react'
+import { MouseEvent, useState } from 'react'
+import Stripe from 'stripe'
 import { useShoppingCart } from 'use-shopping-cart'
 
 interface BagProps {
   closeBag: (event: MouseEvent<HTMLDivElement>) => void
 }
 export function Bag({ closeBag }: BagProps) {
+  const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] =
+    useState(false)
+
   const cart = useShoppingCart()
 
   const { removeItem, cartDetails, clearCart, totalPrice, cartCount } = cart
@@ -19,6 +24,32 @@ export function Bag({ closeBag }: BagProps) {
   const totalPriceCart = totalPrice ? totalPrice / 100 : 0
 
   const handleRemoveItem = (id: string) => removeItem(id)
+
+  const handleFinishBuy = async () => {
+    try {
+      const cartItems = Object.values(cart.cartDetails || {})
+      const lineItems = cartItems?.map((item: any) => {
+        return {
+          price: item.defaultPriceId,
+          quantity: item.quantity,
+        }
+      })
+      setIsCreatingCheckoutSession(true)
+
+      const response = await axios.post('/api/checkout', {
+        lineItems,
+      })
+
+      const { checkoutUrl } = await response.data
+
+      clearCart()
+
+      window.location.href = checkoutUrl
+    } catch (error) {
+      alert('Erro ao redirecionar ao checkout!')
+      setIsCreatingCheckoutSession(false)
+    }
+  }
   return (
     <BagContainer>
       <Close onClick={(event) => closeBag(event)}>
@@ -54,7 +85,9 @@ export function Bag({ closeBag }: BagProps) {
           <strong>Valor Total</strong>
           <strong>{totalPriceCart}</strong>
         </div>
-        <button>Finalizar Compra</button>
+        <button disabled={isCreatingCheckoutSession} onClick={handleFinishBuy}>
+          Finalizar Compra
+        </button>
       </Footer>
     </BagContainer>
   )

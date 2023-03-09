@@ -31,4 +31,26 @@ export const Cart = styled('button', {
   padding: '.75rem',
   border: 0,
   cursor: 'pointer',
+
+  position: 'relative',
+
+  '& > div': {
+    position: 'absolute',
+    right: '-15px',
+    top: '-12px',
+    height: 24,
+    width: 24,
+    borderRadius: 999,
+    background: '$green300',
+    padding: '1rem',
+
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+
+    color: '$white',
+    fontWeight: 'bold',
+
+    border: '4 px solid  $gray900',
+  },
 })

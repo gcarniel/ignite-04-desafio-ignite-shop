@@ -4,7 +4,7 @@ export const BagContainer = styled('aside', {
   height: '100vh',
   width: '36rem',
   background: '$gray800',
-  position: 'absolute',
+  position: 'fixed',
   zIndex: 1,
   top: 0,
   right: 0,
@@ -36,21 +36,26 @@ export const Products = styled('div', {
   margin: '3rem 0',
   minHeight: '100px',
 
-  display: 'flex',
-  alignItems: 'flex-start',
-
-  gap: '1rem',
-
   fontSize: '$md',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '1.5rem',
 
   div: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    gap: '1rem',
+  },
+
+  'div > div': {
     height: '100px',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
 
-    padding: '.5rem 0',
+    padding: '.25rem 0',
 
     button: {
       border: 0,
@@ -73,6 +78,7 @@ export const Products = styled('div', {
     background: 'linear-gradient(180deg, #1EA483 0%, #7465D4 100%)',
     borderRadius: '8px',
     border: 0,
+    objectFit: 'cover',
   },
 })
 

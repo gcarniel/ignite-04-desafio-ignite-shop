@@ -11,27 +11,43 @@ import Link from 'next/link'
 import Head from 'next/head'
 import { CaretRight, Handbag } from 'phosphor-react'
 import { Caret } from '@/styles/pages/home'
+import { useShoppingCart } from 'use-shopping-cart'
 
 interface HomeProps {
-  products: {
-    id: string
-    name: string
-    imageUrl: string
-    price: string
-    description: string
-  }[]
+  products: ProductType[]
+}
+
+interface ProductType {
+  id: string
+  name: string
+  imageUrl: string
+  price: string
+  priceRaw: number
+  description: string
 }
 
 export default function Home({ products }: HomeProps) {
-  const minhafuncao = () => console.log('kkkk')
   const [sliderRef, instanceRef] = useKeenSlider({
     slides: {
       perView: 3,
       spacing: 48,
     },
-    // loop: true,
-    dragStarted: minhafuncao,
   })
+
+  const cart = useShoppingCart()
+  const { addItem } = cart
+
+  const handleAddItem = (product: ProductType) => {
+    const productStripe = {
+      sku: `sku_${product.name}`,
+      currency: 'BRL',
+      price: Number(product.priceRaw),
+      image: product.imageUrl,
+      name: product.name,
+    }
+
+    addItem(productStripe)
+  }
 
   return (
     <>
@@ -51,30 +67,29 @@ export default function Home({ products }: HomeProps) {
         <HomeContainer ref={sliderRef} className="keen-slider">
           {products.map((product) => {
             return (
-              <Link
-                key={product.id}
-                href={`/product/${product.id}`}
-                prefetch={false}
-              >
-                <Product className="keen-slider__slide">
+              <Product className="keen-slider__slide" key={product.id}>
+                <Link
+                  key={product.id}
+                  href={`/product/${product.id}`}
+                  prefetch={false}
+                >
                   <Image
                     src={product.imageUrl}
                     width={520}
                     height={480}
                     alt=""
                   />
-
-                  <footer>
-                    <div>
-                      <strong>{product.description}</strong>
-                      <span>{product.price}</span>
-                    </div>
-                    <span>
-                      <Handbag size={24} />
-                    </span>
-                  </footer>
-                </Product>
-              </Link>
+                </Link>
+                <footer>
+                  <div>
+                    <strong>{product.description}</strong>
+                    <span>{product.price}</span>
+                  </div>
+                  <span onClick={() => handleAddItem(product)}>
+                    <Handbag size={24} />
+                  </span>
+                </footer>
+              </Product>
             )
           })}
         </HomeContainer>
@@ -102,6 +117,7 @@ export const getStaticProps: GetStaticProps = async () => {
       id: product.id,
       name: product.name,
       imageUrl: product.images[0],
+      priceRaw: price.unit_amount as number,
       price: new Intl.NumberFormat('pt-BR', {
         style: 'currency',
         currency: 'BRL',

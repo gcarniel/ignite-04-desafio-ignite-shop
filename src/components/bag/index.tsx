@@ -1,9 +1,15 @@
-import { BagContainer, Close, Footer, Products } from '@/styles/components/bag'
+import { formatMoney } from '@/helpers/formatMoney'
+import {
+  BagContainer,
+  Close,
+  Footer,
+  ImageWrapper,
+  Products,
+} from '@/styles/components/bag'
 import axios from 'axios'
 import Image from 'next/image'
 import { X } from 'phosphor-react'
 import { MouseEvent, useState } from 'react'
-import Stripe from 'stripe'
 import { useShoppingCart } from 'use-shopping-cart'
 
 interface BagProps {
@@ -21,7 +27,7 @@ export function Bag({ closeBag }: BagProps) {
   const countCart =
     cartCount && cartCount > 1 ? `${cartCount} itens` : `${cartCount} item`
 
-  const totalPriceCart = totalPrice ? totalPrice / 100 : 0
+  const totalPriceCart = totalPrice ? formatMoney(totalPrice) : 0
 
   const handleRemoveItem = (id: string) => removeItem(id)
 
@@ -62,7 +68,10 @@ export function Bag({ closeBag }: BagProps) {
         {cartItems.map((item) => {
           return (
             <div key={item.id}>
-              <Image src={item.image || ''} width={100} height={93} alt="" />
+              <ImageWrapper className="teste">
+                <Image src={item.image || ''} width={100} height={93} alt="" />
+                <span>{item.quantity}</span>
+              </ImageWrapper>
               <div>
                 <span>{item.name}</span>
                 <strong>{item.formattedPrice}</strong>

@@ -1,3 +1,4 @@
+import { formatMoney } from '@/helpers/formatMoney'
 import { stripe } from '@/lib/stripe'
 import {
   ImageContainer,
@@ -83,10 +84,7 @@ export const getStaticProps: GetStaticProps<any, { id: string }> = async ({
         description: product.description,
         defaultPriceId: price.id,
         priceRaw: price.unit_amount as number,
-        price: new Intl.NumberFormat('pt-BR', {
-          style: 'currency',
-          currency: 'BRL',
-        }).format((price.unit_amount as number) / 100),
+        price: formatMoney(price.unit_amount as number),
       },
     },
     revalidate: 60 * 60 * 1, // 1 hora

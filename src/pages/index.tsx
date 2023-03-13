@@ -12,6 +12,7 @@ import Head from 'next/head'
 import { CaretRight, Handbag } from 'phosphor-react'
 import { Caret } from '@/styles/pages/home'
 import { useShoppingCart } from 'use-shopping-cart'
+import { formatMoney } from '@/helpers/formatMoney'
 
 interface HomeProps {
   products: ProductType[]
@@ -121,10 +122,7 @@ export const getStaticProps: GetStaticProps = async () => {
       imageUrl: product.images[0],
       priceRaw: price.unit_amount as number,
       defaultPriceId: price.id,
-      price: new Intl.NumberFormat('pt-BR', {
-        style: 'currency',
-        currency: 'BRL',
-      }).format((price.unit_amount as number) / 100),
+      price: formatMoney(price.unit_amount as number),
       description: product.description,
     }
   })

@@ -31,6 +31,20 @@ export const Close = styled('div', {
   padding: '.5rem',
 })
 
+export const ImageWrapper = styled('div', {
+  position: 'relative',
+
+  span: {
+    position: 'absolute',
+    top: -10,
+    right: -2,
+    background: '$gray900',
+    padding: '.25rem',
+    borderRadius: 999,
+    width: '30px',
+  },
+})
+
 export const Products = styled('div', {
   flex: 1,
   margin: '3rem 0',

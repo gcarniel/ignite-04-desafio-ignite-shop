@@ -9,6 +9,7 @@ export const SuccessContainer = styled('main', {
   height: 656,
 
   h1: {
+    marginTop: '2rem',
     fontSize: '$2xl',
     color: '$gray100',
   },
@@ -36,20 +37,26 @@ export const SuccessContainer = styled('main', {
   },
 })
 
+export const ImageWrapper = styled('div', {
+  display: 'flex',
+})
+
 export const ImageContainer = styled('div', {
-  width: '100%',
-  maxWidth: 130,
-  height: 145,
+  width: 130,
+  height: 130,
   background: 'linear-gradient(180deg, #1ea483 0%, #7465d4 100%)',
-  borderRadius: 8,
+  borderRadius: 888,
   padding: '0.25rem',
   marginTop: '4rem',
-
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
 
   img: {
     objectFit: 'cover',
+  },
+
+  '&:nth-child(n+2)': {
+    marginLeft: '-55px',
   },
 })

@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { Handbag } from 'phosphor-react'
 import { MouseEvent, useState } from 'react'
 
-import logo from '../../assets/logo.svg'
+import logoShop from '../../assets/logo.svg'
 import { useShoppingCart } from 'use-shopping-cart'
 import { Bag } from '../bag'
 
@@ -24,7 +24,7 @@ export function HeaderComponent() {
   return (
     <Header>
       <Link href={'/'}>
-        <Image src={logo} alt="" />
+        <Image src={logoShop} alt="" />
       </Link>
       <Cart onClick={handleShowBag}>
         <Handbag size={32} weight="bold" />

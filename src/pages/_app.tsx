@@ -1,4 +1,4 @@
-import { HeaderComponent } from '@/components/Header'
+import { HeaderComponent } from '@/components/header'
 import { globalStyles } from '@/styles/global'
 import { Container, Content } from '@/styles/pages/app'
 import type { AppProps } from 'next/app'

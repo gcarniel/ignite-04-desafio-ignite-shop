@@ -3,10 +3,10 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Handbag } from 'phosphor-react'
 import { MouseEvent, useState } from 'react'
+import { Bag } from '../Bag'
 
 import logo from '../../assets/logo.svg'
 import { useShoppingCart } from 'use-shopping-cart'
-import { Bag } from '../Bag'
 
 export function HeaderComponent() {
   const [showBag, setShowBag] = useState(false)

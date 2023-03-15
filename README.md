@@ -1,38 +1,70 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1 align="center"> GitHub Blog </h1>
 
-## Getting Started
+<p align="center">
+Este é mais um desafio proposto no curso IGNITE da Rocketseat. 
+<br/>
+Cada módulo é desenvolvido uma aplicação e após é proposto um desafio para testar os conhecimentos.
+<br/>
+</p>
 
-First, run the development server:
+<p align="center">
+  <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-layout">Layout</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-layout">Executando</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#memo-licença">Licença</a>
+</p>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+<p align="center">
+  <img alt="License" src="https://img.shields.io/static/v1?label=license&message=MIT&color=49AA26&labelColor=000000">
+</p>
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<br>
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+<p align="center">
+  <img alt="projeto GitHub Blog" src="./src/assets/capa.png" width="100%">
+</p>
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## 🚀 Tecnologias
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Esse projeto foi desenvolvido com as seguintes tecnologias:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- Next.JS
+- Git e Github
+- Figma
+- API do Stripe
+- Axios
+- TypeScript
+- Stitches
 
-## Learn More
+## 💻 Projeto
 
-To learn more about Next.js, take a look at the following resources:
+Ignite Shop 2.0.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+No módulo criamos um projeto completo com o framework Next.js. Utilizamos StitchesJS, passando por conceitos de SPA, server-side rendering (SSR) e static-site generation (SSG).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Já para o desafio a ideia era evoluir o projeto do módulo, fazendo checkout dos produtos cadastrados no stripe, criar um sacolinha para os itens selecinados e renderizá-los na página de sucesso após o checkout concluído com sucesso.
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- [Visite o projeto online](https://ignite-03-desafio-github-blog.vercel.app/)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## 🛠️ Executando
+
+- Clone o projeto e instale as dependências (npm install)
+- Será necessário criar um conta no stripe para gerar as chaves
+- Crie um arquivo .env.local (segue exemplo de como são as keys no arquivo .env.local.example)
+- Após se cadastrar basta pegar a chave pública e a privada e colá-las no seu .env.local
+- Informe também o endereço que rodará seu projeto no arquivo .env.local, pois ele é usado para o checkout do stripe.
+- Por padrão ao rodar local será no porta 3000, mas verifique se não foi trocada e informe no .env.local 
+- Agora é só rodar o projeto com npm run dev.
+
+## 🔖 Layout
+
+Você pode visualizar o layout do projeto através 
+[DESSE LINK](https://www.figma.com/file/63BY4AOFzu9pGKdJG60m1s/Ignite-Shop-2.0-(Copy)?node-id=0%3A1&t=i2EaOSHBXKLg4loi-0). É necessário ter conta no [Figma](https://figma.com) para acessá-lo.
+
+## :memo: Licença
+
+Esse projeto está sob a licença MIT.
+
+---

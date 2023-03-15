@@ -1,4 +1,4 @@
-import { HeaderComponent } from '@/components/header'
+import { Header } from '@/components/header'
 import { globalStyles } from '@/styles/global'
 import { Container, Content } from '@/styles/pages/app'
 import type { AppProps } from 'next/app'
@@ -15,7 +15,7 @@ export default function App({ Component, pageProps }: AppProps) {
       shouldPersist
     >
       <Container>
-        <HeaderComponent />
+        <Header />
 
         <Content>
           <Component {...pageProps} />

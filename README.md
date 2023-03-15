@@ -46,7 +46,7 @@ No módulo criamos um projeto completo com o framework Next.js. Utilizamos Stitc
 Já para o desafio a ideia era evoluir o projeto do módulo, fazendo checkout dos produtos cadastrados no stripe, criar um sacolinha para os itens selecinados e renderizá-los na página de sucesso após o checkout concluído com sucesso.
 
 
-- [Visite o projeto online](https://ignite-03-desafio-github-blog.vercel.app/)
+- [Visite o projeto online](https://ignite-04-desafio-ignite-shop.vercel.app/)
 
 ## 🛠️ Executando
 
